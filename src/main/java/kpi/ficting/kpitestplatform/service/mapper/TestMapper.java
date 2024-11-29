@@ -6,7 +6,7 @@ import static kpi.ficting.kpitestplatform.util.TestUtils.getQuestionsCount;
 import static kpi.ficting.kpitestplatform.util.TestUtils.getStartedSessions;
 
 import java.util.List;
-import kpi.ficting.kpitestplatform.domain.Test;
+import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.dto.TestDto;
 import kpi.ficting.kpitestplatform.dto.TestInfo;
 import kpi.ficting.kpitestplatform.dto.TestListInfo;

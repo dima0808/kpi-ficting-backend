@@ -2,8 +2,8 @@ package kpi.ficting.kpitestplatform.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import kpi.ficting.kpitestplatform.domain.Answer;
-import kpi.ficting.kpitestplatform.domain.ResponseEntry;
+import kpi.ficting.kpitestplatform.repository.entity.Answer;
+import kpi.ficting.kpitestplatform.repository.entity.ResponseEntry;
 import kpi.ficting.kpitestplatform.dto.ResponseEntryDto;
 import kpi.ficting.kpitestplatform.service.mapper.QuestionMapper;
 import kpi.ficting.kpitestplatform.service.mapper.TestSessionMapper;

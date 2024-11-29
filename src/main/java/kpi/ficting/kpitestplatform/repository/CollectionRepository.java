@@ -1,7 +1,7 @@
 package kpi.ficting.kpitestplatform.repository;
 
 import java.util.Optional;
-import kpi.ficting.kpitestplatform.domain.Collection;
+import kpi.ficting.kpitestplatform.repository.entity.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CollectionRepository extends JpaRepository<Collection, Long> {

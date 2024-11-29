@@ -1,7 +1,7 @@
 package kpi.ficting.kpitestplatform.service.mapper.impl;
 
 import java.util.List;
-import kpi.ficting.kpitestplatform.domain.Collection;
+import kpi.ficting.kpitestplatform.repository.entity.Collection;
 import kpi.ficting.kpitestplatform.dto.CollectionDto;
 import kpi.ficting.kpitestplatform.service.mapper.CollectionMapper;
 import kpi.ficting.kpitestplatform.service.mapper.QuestionMapper;

@@ -1,9 +1,9 @@
 package kpi.ficting.kpitestplatform.service.mapper.impl;
 
 import java.util.List;
-import kpi.ficting.kpitestplatform.domain.Collection;
-import kpi.ficting.kpitestplatform.domain.Sample;
-import kpi.ficting.kpitestplatform.domain.Test;
+import kpi.ficting.kpitestplatform.repository.entity.Collection;
+import kpi.ficting.kpitestplatform.repository.entity.Sample;
+import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.dto.SampleDto;
 import kpi.ficting.kpitestplatform.service.CollectionService;
 import kpi.ficting.kpitestplatform.service.exception.QuestionMergeConflictException;

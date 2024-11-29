@@ -2,7 +2,12 @@ package kpi.ficting.kpitestplatform.config;
 
 import jakarta.transaction.Transactional;
 import kpi.ficting.kpitestplatform.common.QuestionType;
-import kpi.ficting.kpitestplatform.domain.*;
+import kpi.ficting.kpitestplatform.repository.entity.Answer;
+import kpi.ficting.kpitestplatform.repository.entity.Choice;
+import kpi.ficting.kpitestplatform.repository.entity.Collection;
+import kpi.ficting.kpitestplatform.repository.entity.MatchingPair;
+import kpi.ficting.kpitestplatform.repository.entity.Question;
+import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.service.CollectionService;
 import kpi.ficting.kpitestplatform.service.TestService;
 import lombok.RequiredArgsConstructor;

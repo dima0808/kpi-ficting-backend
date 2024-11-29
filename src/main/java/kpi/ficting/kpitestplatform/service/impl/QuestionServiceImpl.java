@@ -3,7 +3,7 @@ package kpi.ficting.kpitestplatform.service.impl;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.Question;
+import kpi.ficting.kpitestplatform.repository.entity.Question;
 import kpi.ficting.kpitestplatform.repository.QuestionRepository;
 import kpi.ficting.kpitestplatform.service.QuestionService;
 import lombok.RequiredArgsConstructor;

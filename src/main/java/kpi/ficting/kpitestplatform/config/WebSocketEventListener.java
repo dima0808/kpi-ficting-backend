@@ -1,7 +1,7 @@
 package kpi.ficting.kpitestplatform.config;
 
 import java.time.LocalDateTime;
-import kpi.ficting.kpitestplatform.domain.TestSession;
+import kpi.ficting.kpitestplatform.repository.entity.TestSession;
 import kpi.ficting.kpitestplatform.service.TestSessionService;
 import kpi.ficting.kpitestplatform.service.exception.TestSessionNotFoundException;
 import lombok.RequiredArgsConstructor;

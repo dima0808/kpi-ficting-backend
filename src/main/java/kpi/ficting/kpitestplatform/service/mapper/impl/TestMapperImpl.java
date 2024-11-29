@@ -1,6 +1,6 @@
 package kpi.ficting.kpitestplatform.service.mapper.impl;
 
-import kpi.ficting.kpitestplatform.domain.Test;
+import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.dto.TestDto;
 import kpi.ficting.kpitestplatform.service.mapper.QuestionMapper;
 import kpi.ficting.kpitestplatform.service.mapper.SampleMapper;

@@ -2,7 +2,7 @@ package kpi.ficting.kpitestplatform.service.impl;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
-import kpi.ficting.kpitestplatform.domain.Collection;
+import kpi.ficting.kpitestplatform.repository.entity.Collection;
 import kpi.ficting.kpitestplatform.repository.CollectionRepository;
 import kpi.ficting.kpitestplatform.service.CollectionService;
 import kpi.ficting.kpitestplatform.service.exception.CollectionAlreadyExistsException;

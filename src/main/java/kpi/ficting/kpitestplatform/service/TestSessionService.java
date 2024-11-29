@@ -2,8 +2,8 @@ package kpi.ficting.kpitestplatform.service;
 
 import java.util.List;
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.Question;
-import kpi.ficting.kpitestplatform.domain.TestSession;
+import kpi.ficting.kpitestplatform.repository.entity.Question;
+import kpi.ficting.kpitestplatform.repository.entity.TestSession;
 
 public interface TestSessionService {
 

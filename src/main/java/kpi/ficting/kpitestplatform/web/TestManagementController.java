@@ -4,7 +4,7 @@ import static kpi.ficting.kpitestplatform.util.CsvGeneratorUtils.generateCsv;
 
 import jakarta.validation.Valid;
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.Test;
+import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.dto.QuestionListDto;
 import kpi.ficting.kpitestplatform.dto.SampleListDto;
 import kpi.ficting.kpitestplatform.dto.TestDto;

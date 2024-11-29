@@ -2,11 +2,11 @@ package kpi.ficting.kpitestplatform.util;
 
 import java.util.List;
 import kpi.ficting.kpitestplatform.common.QuestionType;
-import kpi.ficting.kpitestplatform.domain.Answer;
-import kpi.ficting.kpitestplatform.domain.Question;
-import kpi.ficting.kpitestplatform.domain.ResponseEntry;
-import kpi.ficting.kpitestplatform.domain.Sample;
-import kpi.ficting.kpitestplatform.domain.TestSession;
+import kpi.ficting.kpitestplatform.repository.entity.Answer;
+import kpi.ficting.kpitestplatform.repository.entity.Question;
+import kpi.ficting.kpitestplatform.repository.entity.ResponseEntry;
+import kpi.ficting.kpitestplatform.repository.entity.Sample;
+import kpi.ficting.kpitestplatform.repository.entity.TestSession;
 
 public class TestUtils {
 

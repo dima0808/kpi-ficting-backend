@@ -6,4 +6,5 @@ public enum TestMessageType {
   NEXT_QUESTION,
   SAVE_ANSWER,
   FINISH,
+  HEALTHCHECK
 }

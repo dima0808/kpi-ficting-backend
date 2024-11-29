@@ -1,7 +1,7 @@
 package kpi.ficting.kpitestplatform.service;
 
 import java.util.List;
-import kpi.ficting.kpitestplatform.domain.Collection;
+import kpi.ficting.kpitestplatform.repository.entity.Collection;
 
 public interface CollectionService {
 

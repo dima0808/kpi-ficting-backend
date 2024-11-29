@@ -1,4 +1,4 @@
-package kpi.ficting.kpitestplatform.domain;
+package kpi.ficting.kpitestplatform.repository.entity;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

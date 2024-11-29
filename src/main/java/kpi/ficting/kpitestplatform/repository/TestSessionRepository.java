@@ -3,7 +3,7 @@ package kpi.ficting.kpitestplatform.repository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.TestSession;
+import kpi.ficting.kpitestplatform.repository.entity.TestSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,7 +2,7 @@ package kpi.ficting.kpitestplatform.service.impl;
 
 import java.util.List;
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.Sample;
+import kpi.ficting.kpitestplatform.repository.entity.Sample;
 import kpi.ficting.kpitestplatform.repository.SampleRepository;
 import kpi.ficting.kpitestplatform.service.SampleService;
 import lombok.RequiredArgsConstructor;

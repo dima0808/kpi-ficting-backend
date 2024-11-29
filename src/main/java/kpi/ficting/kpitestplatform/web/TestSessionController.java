@@ -1,8 +1,8 @@
 package kpi.ficting.kpitestplatform.web;
 
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.Question;
-import kpi.ficting.kpitestplatform.domain.TestSession;
+import kpi.ficting.kpitestplatform.repository.entity.Question;
+import kpi.ficting.kpitestplatform.repository.entity.TestSession;
 import kpi.ficting.kpitestplatform.dto.ResponseEntryDto;
 import kpi.ficting.kpitestplatform.dto.TestSessionDto;
 import kpi.ficting.kpitestplatform.dto.websocket.TestMessage;
@@ -40,6 +40,19 @@ public class TestSessionController {
     TestMessage testMessage = TestMessage.builder()
         .type(TestMessageType.START)
         .content("Test session started. " + credentials)
+        .testSession(testSessionMapper.toTestSessionDto(testSession, false))
+        .build();
+    messagingTemplate.convertAndSendToUser(credentials, "/queue/testSession", testMessage);
+    return testMessage;
+  }
+
+  @MessageMapping("/tests/{testId}/healthcheck")
+  public TestMessage healthcheck(@DestinationVariable UUID testId,
+      @Header("credentials") String credentials) {
+    TestSession testSession = testSessionService.findByTestIdAndCredentials(testId, credentials);
+    TestMessage testMessage = TestMessage.builder()
+        .type(TestMessageType.HEALTHCHECK)
+        .content("Pong. Connection is stable. " + credentials)
         .testSession(testSessionMapper.toTestSessionDto(testSession, false))
         .build();
     messagingTemplate.convertAndSendToUser(credentials, "/queue/testSession", testMessage);

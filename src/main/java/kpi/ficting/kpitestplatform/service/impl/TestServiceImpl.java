@@ -5,7 +5,7 @@ import static kpi.ficting.kpitestplatform.util.TestUtils.getStartedSessions;
 
 import java.util.List;
 import java.util.UUID;
-import kpi.ficting.kpitestplatform.domain.Test;
+import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.repository.TestRepository;
 import kpi.ficting.kpitestplatform.service.TestService;
 import kpi.ficting.kpitestplatform.service.exception.ImmutableTestException;
