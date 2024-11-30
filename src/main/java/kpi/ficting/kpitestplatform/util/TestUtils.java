@@ -44,6 +44,7 @@ public class TestUtils {
         .count();
     if (responseEntry.getQuestion().getType() == QuestionType.MULTIPLE_CHOICES) {
       correctCount -= studentAnswerIds.size() - correctCount;
+      correctCount = Math.max(correctCount, 0);
     }
     double percentageCorrect = (double) correctCount / correctAnswerIds.size();
     return (int) (percentageCorrect * responseEntry.getQuestion().getPoints());
