@@ -91,6 +91,9 @@ public class TestSessionServiceImpl implements TestSessionService {
     if (test.getOpenDate().isAfter(LocalDateTime.now())) {
       throw new IllegalStateException("Test is not open yet");
     }
+    if (test.getDeadline().isBefore(LocalDateTime.now())) {
+      throw new IllegalStateException("Test is closed");
+    }
     List<ResponseEntry> responses = new ArrayList<>();
     addTestQuestions(responses, test.getQuestions(), testSession);
     addSampleQuestions(responses, test.getSamples(), testSession);
