@@ -30,7 +30,7 @@ public class QuestionDto {
   private Integer points;
 
   @ValidQuestionType
-  @JsonPropertyDescription("Question type. One of: SINGLE_CHOICE, MULTIPLE_CHOICES, MATCHING")
+  @JsonPropertyDescription("Question type. One of: single_choice, multiple_choices, matching")
   private String type;
 
   @Size(min = 2, message = "Question must have at least two answers")

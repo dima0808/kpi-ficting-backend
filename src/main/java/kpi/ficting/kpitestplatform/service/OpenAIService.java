@@ -1,9 +1,10 @@
 package kpi.ficting.kpitestplatform.service;
 
 import kpi.ficting.kpitestplatform.common.QuestionType;
-import kpi.ficting.kpitestplatform.dto.QuestionDto;
+import kpi.ficting.kpitestplatform.dto.QuestionListDto;
 
 public interface OpenAIService {
 
-  QuestionDto generateQuestion(String theme, QuestionType questionType, int points);
+  QuestionListDto generateQuestions(String theme, QuestionType questionsType, int points,
+      int questionCount);
 }

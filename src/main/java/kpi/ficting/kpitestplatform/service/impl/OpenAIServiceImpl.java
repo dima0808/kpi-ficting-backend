@@ -2,7 +2,7 @@ package kpi.ficting.kpitestplatform.service.impl;
 
 import java.util.Map;
 import kpi.ficting.kpitestplatform.common.QuestionType;
-import kpi.ficting.kpitestplatform.dto.QuestionDto;
+import kpi.ficting.kpitestplatform.dto.QuestionListDto;
 import kpi.ficting.kpitestplatform.service.OpenAIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatModel;
@@ -20,26 +20,28 @@ public class OpenAIServiceImpl implements OpenAIService {
 
   private final ChatModel chatModel;
 
-  @Value("classpath:templates/get-question-for-test.st")
-  private Resource questionPrompt;
+  @Value("classpath:templates/get-questions-for-test.st")
+  private Resource questionsPrompt;
 
   @Override
-  public QuestionDto generateQuestion(String theme, QuestionType questionType, int points) {
-    BeanOutputConverter<QuestionDto> converter = new BeanOutputConverter<>(QuestionDto.class);
+  public QuestionListDto generateQuestions(String theme, QuestionType questionType, int points,
+      int questionsCount) {
+    BeanOutputConverter<QuestionListDto> converter = new BeanOutputConverter<>(QuestionListDto.class);
     String format = converter.getFormat();
-    PromptTemplate promptTemplate = new PromptTemplate(questionPrompt);
+    PromptTemplate promptTemplate = new PromptTemplate(questionsPrompt);
     Prompt prompt = promptTemplate.create(Map.of(
         "theme", theme,
         "questionType", questionType.getDisplayName(),
-        "difficulty", points < 3 ? "easy" : points < 6 ? "medium" : "hard",
+        "difficulty", points < 2 ? "easy" : points < 4 ? "medium" : "hard",
+        "questionsCount", questionsCount,
         "format", format
     ));
     ChatResponse response = chatModel.call(prompt);
-    QuestionDto question = converter.convert(response.getResult().getOutput().getContent());
-    if (question == null) {
-      throw new RuntimeException("Failed to get question");
+    QuestionListDto questions = converter.convert(response.getResult().getOutput().getContent());
+    if (questions == null) {
+      throw new RuntimeException("Failed to get questions");
     }
-    question.setPoints(points);
-    return question;
+    questions.getQuestions().forEach(question -> question.setPoints(points));
+    return questions;
   }
 }

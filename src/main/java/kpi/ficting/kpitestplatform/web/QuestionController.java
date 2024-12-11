@@ -1,7 +1,7 @@
 package kpi.ficting.kpitestplatform.web;
 
 import kpi.ficting.kpitestplatform.common.QuestionType;
-import kpi.ficting.kpitestplatform.dto.QuestionDto;
+import kpi.ficting.kpitestplatform.dto.QuestionListDto;
 import kpi.ficting.kpitestplatform.service.OpenAIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +18,10 @@ public class QuestionController {
   private final OpenAIService openAIService;
 
   @GetMapping("/generate")
-  public ResponseEntity<QuestionDto> generateQuestion(@RequestParam String theme,
-      @RequestParam String questionType, @RequestParam int points) {
-    return ResponseEntity.ok(openAIService.generateQuestion(
-        theme, QuestionType.valueOf(questionType.toUpperCase()), points));
+  public ResponseEntity<QuestionListDto> generateQuestions(@RequestParam String theme,
+      @RequestParam String questionType, @RequestParam int points,
+      @RequestParam(defaultValue = "1") int questionsCount) {
+    return ResponseEntity.ok(openAIService.generateQuestions(
+        theme, QuestionType.valueOf(questionType.toUpperCase()), points, questionsCount));
   }
 }
