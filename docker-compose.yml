@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      JWT_SECRET: someSecretKey
+      ADMIN_PASSWORD: 123456
+      DATASOURCE_URL: jdbc:postgresql://db:5432/web_kpi_test_platform
+      DATASOURCE_USERNAME: postgres
+      DATASOURCE_PASSWORD: root
+      OPENAI_API_KEY: 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
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: web_kpi_test_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
