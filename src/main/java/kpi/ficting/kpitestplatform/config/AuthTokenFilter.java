@@ -34,10 +34,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
       throws IOException, ServletException {
     String jwt = parseJwt(request);
     if (jwt != null && jwtUtils.validateToken(jwt)) {
-      String username = jwtUtils.extractClaims(jwt).getSubject();
-      UserDetails admin = userDetailsService.loadUserByUsername(username);
+      String email = jwtUtils.extractClaims(jwt).getSubject();
+      UserDetails userDetails = userDetailsService.loadUserByUsername(email);
       UsernamePasswordAuthenticationToken authentication =
-          new UsernamePasswordAuthenticationToken(admin, null, admin.getAuthorities());
+          new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
       SecurityContextHolder.getContext().setAuthentication(authentication);
     } else {
       SecurityContextHolder.clearContext();

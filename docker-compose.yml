@@ -10,7 +10,7 @@ services:
       DATASOURCE_URL: jdbc:postgresql://db:5432/web_kpi_test_platform
       DATASOURCE_USERNAME: postgres
       DATASOURCE_PASSWORD: root
-      OPENAI_API_KEY: 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
+      OPENAI_API_KEY: YOUR_OPENAI_API_KEY
     depends_on:
       - db
   db:

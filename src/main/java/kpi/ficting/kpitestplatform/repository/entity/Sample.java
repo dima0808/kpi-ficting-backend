@@ -34,5 +34,6 @@ public class Sample {
   private Collection collection;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
   private Test test;
 }

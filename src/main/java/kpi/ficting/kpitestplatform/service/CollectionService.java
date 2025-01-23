@@ -11,5 +11,5 @@ public interface CollectionService {
 
   Collection create(Collection collection);
 
-  void delete(String collectionName);
+  void deleteByName(String collectionName);
 }
