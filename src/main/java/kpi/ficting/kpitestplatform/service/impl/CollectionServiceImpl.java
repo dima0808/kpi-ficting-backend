@@ -1,6 +1,10 @@
 package kpi.ficting.kpitestplatform.service.impl;
 
-import jakarta.transaction.Transactional;
+import kpi.ficting.kpitestplatform.repository.UserRepository;
+import kpi.ficting.kpitestplatform.repository.entity.User;
+import kpi.ficting.kpitestplatform.service.exception.UserNotFoundException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import kpi.ficting.kpitestplatform.repository.entity.Collection;
 import kpi.ficting.kpitestplatform.repository.CollectionRepository;
@@ -15,10 +19,11 @@ import org.springframework.stereotype.Service;
 public class CollectionServiceImpl implements CollectionService {
 
   private final CollectionRepository collectionRepository;
+  private final UserRepository userRepository;
 
   @Override
   public List<Collection> findAll() {
-    return collectionRepository.findAll();
+    return getUserFromAuthContext().getCollections();
   }
 
   @Override
@@ -28,16 +33,25 @@ public class CollectionServiceImpl implements CollectionService {
   }
 
   @Override
+  @Transactional
   public Collection create(Collection collection) {
-    if (collectionRepository.existsByName(collection.getName())) {
+    User author = getUserFromAuthContext();
+    if (collectionRepository.existsByNameAndAuthor(collection.getName(), author)) {
       throw new CollectionAlreadyExistsException(collection.getName());
     }
+    collection.setAuthor(author);
     return collectionRepository.save(collection);
   }
 
   @Override
   @Transactional
-  public void delete(String collectionName) {
+  public void deleteByName(String collectionName) {
     collectionRepository.deleteByName(collectionName);
+  }
+
+  private User getUserFromAuthContext() {
+    String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+    return userRepository.findByEmail(userEmail)
+        .orElseThrow(() -> new UserNotFoundException(userEmail));
   }
 }

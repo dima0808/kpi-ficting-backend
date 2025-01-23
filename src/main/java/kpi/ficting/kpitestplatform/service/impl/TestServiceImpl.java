@@ -5,23 +5,29 @@ import static kpi.ficting.kpitestplatform.util.TestUtils.getStartedSessions;
 
 import java.util.List;
 import java.util.UUID;
+import kpi.ficting.kpitestplatform.repository.UserRepository;
 import kpi.ficting.kpitestplatform.repository.entity.Test;
 import kpi.ficting.kpitestplatform.repository.TestRepository;
+import kpi.ficting.kpitestplatform.repository.entity.User;
 import kpi.ficting.kpitestplatform.service.TestService;
 import kpi.ficting.kpitestplatform.service.exception.ImmutableTestException;
 import kpi.ficting.kpitestplatform.service.exception.TestNotFoundException;
+import kpi.ficting.kpitestplatform.service.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class TestServiceImpl implements TestService {
 
   private final TestRepository testRepository;
+  private final UserRepository userRepository;
 
   @Override
   public List<Test> findAll() {
-    return testRepository.findAll();
+    return getUserFromAuthContext().getTests();
   }
 
   @Override
@@ -31,8 +37,10 @@ public class TestServiceImpl implements TestService {
   }
 
   @Override
+  @Transactional
   public Test create(Test test) {
     test.setSessions(List.of());
+    test.setAuthor(getUserFromAuthContext());
     return testRepository.save(test);
   }
 
@@ -63,5 +71,11 @@ public class TestServiceImpl implements TestService {
   @Override
   public void deleteById(UUID testId) {
     testRepository.deleteById(testId);
+  }
+
+  private User getUserFromAuthContext() {
+    String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+    return userRepository.findByEmail(userEmail)
+        .orElseThrow(() -> new UserNotFoundException(userEmail));
   }
 }

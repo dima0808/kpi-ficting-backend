@@ -1,6 +1,6 @@
 package kpi.ficting.kpitestplatform.service.impl;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 import kpi.ficting.kpitestplatform.repository.entity.Question;

@@ -71,7 +71,7 @@ public class CollectionManagementController {
 
   @DeleteMapping("{collectionName}")
   public ResponseEntity<Void> deleteCollection(@PathVariable String collectionName) {
-    collectionService.delete(collectionName);
+    collectionService.deleteByName(collectionName);
     return ResponseEntity.noContent().build();
   }
 }

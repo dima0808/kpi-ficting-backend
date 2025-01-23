@@ -2,9 +2,7 @@ package kpi.ficting.kpitestplatform.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,12 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -31,12 +25,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
-  @Value("${kpi-test-platform.jwt.admin-username}")
-  private String adminUsername;
-
-  @Value("${kpi-test-platform.jwt.admin-password}")
-  private String adminPassword;
 
   @Bean
   public AuthenticationEntryPoint unauthorizedHandler() {
@@ -91,20 +79,5 @@ public class SecurityConfig {
     http.addFilterBefore(authenticationJwtTokenFilter(),
         UsernamePasswordAuthenticationFilter.class);
     return http.build();
-  }
-
-  @Bean
-  public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-    String generatedPassword = UUID.randomUUID().toString().replace("-", "");
-    System.out.println("Admin username: " + adminUsername);
-    System.out.println("Generated admin password: " + generatedPassword);
-
-    UserDetails admin = User.builder()
-        .username(adminUsername)
-        .password(passwordEncoder.encode(adminPassword)) // generatedPassword
-        .roles("ADMIN")
-        .build();
-
-    return new InMemoryUserDetailsManager(admin);
   }
 }
