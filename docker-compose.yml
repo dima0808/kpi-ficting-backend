@@ -6,11 +6,12 @@ services:
       - "8080:8080"
     environment:
       JWT_SECRET: someSecretKey
+      ADMIN_EMAIL: admin@gmail.com
       ADMIN_PASSWORD: 123456
       DATASOURCE_URL: jdbc:postgresql://db:5432/web_kpi_test_platform
       DATASOURCE_USERNAME: postgres
       DATASOURCE_PASSWORD: root
-      OPENAI_API_KEY: YOUR_OPENAI_API_KEY
+      OPENAI_API_KEY: #YOUR_OPENAI_API_KEY
     depends_on:
       - db
   db:
